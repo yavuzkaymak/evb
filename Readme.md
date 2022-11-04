@@ -27,5 +27,5 @@ vagrant ssh
 4. After you are done
 
 ```
-vargant stop
+vargant halt
 ```

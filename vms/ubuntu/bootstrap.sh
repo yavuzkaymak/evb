@@ -61,6 +61,7 @@ main() {
     ensure_netplan_apply
     resolve_dns
     install_openssh
+    install_docker
 }
 
 main
