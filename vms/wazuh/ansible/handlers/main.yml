@@ -1,0 +1,6 @@
+- name: start and enable wazuh-server service
+  systemd:
+    name: wazuh-server
+    daemon_reload: True
+    state: started
+    enabled: True

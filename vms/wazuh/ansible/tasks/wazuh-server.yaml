@@ -1,0 +1,33 @@
+---
+- name: "Get Wazuh Docker Compose File"
+  git:
+    repo: https://github.com/wazuh/wazuh-docker.git
+    dest: /tmp/wazuh-docker
+    version: v4.3.10
+    depth: 1
+    force: yes
+    
+- name: "Get Wazuh Docker Compose File"
+  shell: cp -R /tmp/wazuh-docker/single-node/* {{wazuh_home}}
+
+- name: Create Certs
+  shell: cd {{wazuh_home}} && docker compose -f generate-indexer-certs.yml run --rm generator
+
+- name: copy run.sh
+  copy: 
+    src: /ansible/templates/server/wazuh-server-run.sh   
+    dest: "{{wazuh_home}}"
+    remote_src: true
+    mode: 777
+
+- name: write service for wazuh
+  template:
+    src: templates/server/wazuh-server.service
+    dest: /etc/systemd/system/
+
+- name: start and enable wazuh-server service
+  systemd:
+    name: wazuh-server
+    daemon_reload: True
+    state: started
+    enabled: True

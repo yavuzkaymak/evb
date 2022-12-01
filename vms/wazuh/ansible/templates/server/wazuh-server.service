@@ -1,0 +1,15 @@
+[Unit]
+Description=wazuh server
+After=docker.service
+Requires=docker.service
+
+[Service]
+WorkingDirectory={{wazuh_home}}
+Type=oneshot
+RemainAfterExit=true
+ExecStart={{wazuh_home}}/wazuh-server-run.sh start
+ExecStop={{wazuh_home}}/wazuh-server-run.sh stop
+
+
+[Install]
+WantedBy=multi-user.target

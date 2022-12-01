@@ -1,0 +1,30 @@
+---
+- name: Add Wazuh  signing key
+  shell: | 
+    curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH  | \
+    gpg --no-default-keyring --keyring gnupg-ring:/usr/share/keyrings/wazuh.gpg --import && \
+    chmod 644 /usr/share/keyrings/wazuh.gpg
+
+- name: Add Wazuh Repository
+  shell: |
+    echo "deb [signed-by=/usr/share/keyrings/wazuh.gpg] https://packages.wazuh.com/4.x/apt/ stable main" | \
+    tee -a /etc/apt/sources.list.d/wazuh.list
+
+- name: Install Wazuh Agent
+  apt:
+    name: wazuh-agent
+    state: latest
+    update_cache: true
+
+
+- name: copy agent ossec conf
+  template:
+    src: templates/agent/ossec.conf
+    dest: /var/ossec/etc/
+
+- name: start and enable wazuh-agent service
+  systemd:
+    name: wazuh-agent
+    daemon_reload: True
+    state: started
+    enabled: True

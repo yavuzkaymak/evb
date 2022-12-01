@@ -1,0 +1,16 @@
+---
+- become: yes
+  hosts: all
+  vars_files:
+    - vars.yaml
+  tasks:
+    - name: common tasks
+      include_tasks: tasks/common.yaml
+
+    - name: wazuh- server installation
+      include_tasks: tasks/wazuh-server.yaml
+      when: service == "wazuh-server"
+
+    - name: wazuh-agent installation
+      include_tasks: tasks/wazuh-agent.yaml
+      when: service == "wazuh-agent"
