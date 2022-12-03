@@ -28,3 +28,19 @@
     daemon_reload: True
     state: started
     enabled: True
+
+- name: creates apache directory
+  file:
+   state: directory
+   path: /var/www/html
+
+- name: copy index.html
+  template:
+    src: templates/agent/index.html
+    dest: /var/www/html
+  
+- name: Install apache2
+  apt:
+    name: apache2
+    state: latest
+    update_cache: true
