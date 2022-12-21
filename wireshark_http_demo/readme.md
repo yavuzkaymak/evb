@@ -81,3 +81,21 @@ port 3000 and tcp[((tcp[12:1] & 0xf0) >> 2):4] = 0x504f5354" > out.pcap
 ```
 docker kill secure_grafana
 ```
+## Optional - Decoding  the certificate
+
+- First copy the certificate from image to your local computer:
+
+```
+docker run --rm \
+    --entrypoint=cat \
+    secure_grafana \
+    /etc/grafana/grafana.crt > grafana.crt
+
+```
+
+- Use openssl to decode it
+
+```
+openssl x509 -in grafana.crt -text -noout | less
+
+```
