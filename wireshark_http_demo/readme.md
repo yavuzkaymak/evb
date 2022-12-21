@@ -79,7 +79,7 @@ port 3000 and tcp[((tcp[12:1] & 0xf0) >> 2):4] = 0x504f5354" > out.pcap
 - Examine though the out.pcap file with cat. You won't be able to see the password and username in plain text
 - Stop the grafana container:
 ```
-docker kill secure_grafana
+docker kill secured_grafana
 ```
 ## Optional - Decoding  the certificate
 
@@ -88,7 +88,7 @@ docker kill secure_grafana
 ```
 docker run --rm \
     --entrypoint=cat \
-    secure_grafana \
+    secured_grafana \
     /etc/grafana/grafana.crt > grafana.crt
 
 ```
