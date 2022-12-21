@@ -14,7 +14,7 @@ In this simulation we will run two instances of Grafana, one with http and anoth
 sudo apt update && sudo apt install -y tshark
 ```
 
-## Unsecure Connection 
+## Insecure Connection 
 
 - First spin up Grafana with http connection
 
