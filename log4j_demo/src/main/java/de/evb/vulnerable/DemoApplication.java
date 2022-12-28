@@ -1,4 +1,4 @@
-package de.otto.demo;
+package de.evb.vulnerable;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
