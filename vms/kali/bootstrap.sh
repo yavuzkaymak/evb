@@ -36,6 +36,8 @@ install_tools() {
 
 }
 
+
+
 main() {
     install_tools
     install_openssh
