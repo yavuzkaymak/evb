@@ -43,7 +43,8 @@ install_openssh() {
 }
 
 install_tools() {
-    sudo apt install -y python3 git 
+    sudo apt-get install -y python3 git code-oss
+    
 
 }
 
