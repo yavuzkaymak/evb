@@ -1,17 +1,21 @@
+VAGRANTFILE_API_VERSION = "2"
+
 servers=[
   {
     :hostname => "wazuh-server",
     :ip => "192.168.100.10",
     :box => "ubuntu/bionic64",
     :ram => 2048,
-    :cpu => 4
+    :cpu => 4,
+    :forwarded_port => 1234
   },
   {
     :hostname => "wazuh-agent",
     :ip => "192.168.100.11",
     :box => "ubuntu/bionic64",
     :ram => 1024,
-    :cpu => 2
+    :cpu => 2,
+    :forwarded_port => 1235
   }
 ]
 
@@ -36,3 +40,4 @@ Vagrant.configure(2) do |config|
         end
     end
 end
+
