@@ -25,8 +25,7 @@ docker run --rm -d --name grafana -p 3000:3000 grafana/grafana
 - Capture the traffic on loopback
 
 ```
-sudo tshark -i lo -x -f \
-port 3000 and tcp[((tcp[12:1] & 0xf0) >> 2):4] = 0x504f5354" > out.pcap
+sudo tshark -i lo -x -f "port 80 and tcp[((tcp[12:1] & 0xf0) >> 2):4] = 0x504f5354" > out.pcap
 ```
 
 - On browser, open http://localhost:3000 enter admin for user and password.
